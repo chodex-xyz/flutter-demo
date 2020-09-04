@@ -7,7 +7,7 @@ class BasketWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Screen"),
+        title: Text("Корзина"),
       ),
       body: Center(
         child: RaisedButton(

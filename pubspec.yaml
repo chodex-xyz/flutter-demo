@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^0.1.3
   http: ^0.12.2
   dio: ^3.0.10
+  location: ^3.0.0
 
 dev_dependencies:
   flutter_test:

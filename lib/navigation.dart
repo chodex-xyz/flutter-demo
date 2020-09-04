@@ -10,7 +10,7 @@ class Destination {
 
 const List<Destination> allDestinations = <Destination>[
   Destination('Меню', Icons.home, Colors.teal, '/category'),
-  // Destination('Доставка', Icons.landscape, Colors.cyan, '/delivery'),
+  Destination('Доставка', Icons.explore, Colors.cyan, '/delivery'),
   Destination('Корзина', Icons.shopping_basket, Colors.orange, '/basket'),
   Destination('Вход', Icons.account_circle, Colors.blue, '/login')
 ];

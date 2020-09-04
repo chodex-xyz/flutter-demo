@@ -54,7 +54,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           print('Response status: ${response.statusCode}');
           print('Response body: ${response.data}');
 
-          Navigator.pushNamed(context, '/category');
+          Navigator.pushNamed(context, '/basket');
         },
         child: Text("Login",
             textAlign: TextAlign.center,
