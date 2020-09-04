@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Destination {
-  const Destination(this.title, this.icon, this.color);
-  final String title;
-  final IconData icon;
-  final MaterialColor color;
-}
+import 'navigation.dart';
 
-const List<Destination> allDestinations = <Destination>[
-  Destination('Home', Icons.home, Colors.teal),
-  Destination('Business', Icons.business, Colors.cyan),
-  Destination('School', Icons.school, Colors.orange),
-  Destination('Flight', Icons.flight, Colors.blue)
-];
+
 
 class MenuWidget extends StatelessWidget {
   @override
@@ -35,18 +25,7 @@ class MenuWidget extends StatelessWidget {
           );
         }),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (int index) {
-          print(index);
-        },
-        items: allDestinations.map((Destination destination) {
-          return BottomNavigationBarItem(
-              icon: Icon(destination.icon),
-              backgroundColor: destination.color,
-              title: Text(destination.title));
-        }).toList(),
-        selectedItemColor: Colors.amber[800],
-      ),
+      bottomNavigationBar: NavigationWidget(),
     );
   }
 }

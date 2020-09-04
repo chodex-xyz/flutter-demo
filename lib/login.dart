@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
+import 'navigation.dart';
+
 class LoginWidget extends StatefulWidget {
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
@@ -94,6 +96,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
         ),
       ),
+      bottomNavigationBar: NavigationWidget(),
     );
   }
 }

@@ -7,7 +7,6 @@ class CategoryWidget extends StatefulWidget {
   _CategoryWidgetState createState() => _CategoryWidgetState();
 }
 
-
 class ProductDetail {
   final int id;
   final String image;
@@ -24,42 +23,42 @@ class ProductDetail {
   }
 }
 
-
 class _CategoryWidgetState extends State<CategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String>(
       future: downloadData(), // function where you call your api
-      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {  // AsyncSnapshot<Your object type>
-        if( snapshot.connectionState == ConnectionState.waiting){
-          return  Center(child: Text('Please wait its loading...'));
-        }else{
-          if (snapshot.hasError)
-            return Center(child: Text('Error: ${snapshot.error}'));
-          else{
-
-            final parsed = json.decode(snapshot.data).cast<Map<String, dynamic>>();
-
-            final productDetails = parsed.map<ProductDetail>((json) => ProductDetail.fromJson(json)).toList();
-
-            print(productDetails);
-
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-              itemCount: productDetails.length,
-              itemBuilder: (context, index) {
-                return Image.network(productDetails[index].image);
-              },
-            );
-          }
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        // AsyncSnapshot<Your object type>
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: Text('Please wait its loading...'));
         }
+
+        if (snapshot.hasError)
+          return Center(child: Text('Error: ${snapshot.error}'));
+
+        final parsed = json.decode(snapshot.data).cast<Map<String, dynamic>>();
+
+        final productDetails = parsed
+            .map<ProductDetail>((json) => ProductDetail.fromJson(json))
+            .toList();
+
+        return GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+          ),
+          itemCount: productDetails.length,
+          itemBuilder: (context, index) {
+            return Image.network(productDetails[index].image);
+          },
+        );
       },
     );
   }
-  Future<String> downloadData()async{
-    var response = await http.get('https://api.frfrstaging.ru/v2/menu/products/city/1/category/1/');
+
+  Future<String> downloadData() async {
+    var response = await http
+        .get('https://api.frfrstaging.ru/v2/menu/products/city/1/category/1/');
 
     return Future.value(response.body); // return your response
   }
