@@ -9,19 +9,61 @@ class BasketWidget extends StatelessWidget {
       appBar: AppBar(
         title: Text("Корзина"),
       ),
-      body: GridView.count(
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this produces 2 rows.
-        crossAxisCount: 1,
-        // Generate 100 widgets that display their index in the List.
-        children: List.generate(4, (index) {
-          return Center(
-            child: Text(
-              'Item $index',
-              style: Theme.of(context).textTheme.headline5,
+      body: ListView(
+        // This next line does the trick.
+        children: <Widget>[
+          Container(
+            width: 160.0,
+            height: 50.0,
+            color: Colors.red,
+          ),
+          Container(
+            width: 160.0,
+            height: 50.0,
+            color: Colors.blue,
+          ),
+          Container(
+            width: 160.0,
+            height: 50.0,
+            color: Colors.green,
+          ),
+          Container(
+            width: 160.0,
+            height: 50.0,
+            color: Colors.yellow,
+          ),
+          Container(
+            width: 160.0,
+            height: 50.0,
+            color: Colors.orange,
+          ),
+          TextField(
+            obscureText: false,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              hintText: "Имя",
             ),
-          );
-        }),
+          ),
+          TextField(
+            obscureText: false,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              hintText: "Телефон",
+            ),
+          ),
+          Material(
+              elevation: 5.0,
+              color: Color(0xfffe5000),
+              child: MaterialButton(
+                minWidth: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                onPressed: () async {},
+                child: Text(
+                  "Оформить заказ",
+                  textAlign: TextAlign.center,
+                ),
+              )),
+        ],
       ),
       bottomNavigationBar: NavigationWidget(),
     );

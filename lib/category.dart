@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:loading_gifs/loading_gifs.dart';
+
+import 'navigation.dart';
 
 class CategoryWidget extends StatefulWidget {
   @override
@@ -31,7 +34,11 @@ class _CategoryWidgetState extends State<CategoryWidget> {
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         // AsyncSnapshot<Your object type>
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: Text('Please wait its loading...'));
+          return Scaffold(
+              body: Center(
+                  child: FadeInImage.assetNetwork(
+                      placeholder: cupertinoActivityIndicator,
+                      image: "loader.gif")));
         }
 
         if (snapshot.hasError)
@@ -43,14 +50,34 @@ class _CategoryWidgetState extends State<CategoryWidget> {
             .map<ProductDetail>((json) => ProductDetail.fromJson(json))
             .toList();
 
-        return GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("Пицца"),
           ),
-          itemCount: productDetails.length,
-          itemBuilder: (context, index) {
-            return Image.network(productDetails[index].image);
-          },
+          body: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+            ),
+            itemCount: productDetails.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  ButtonBar(
+                    children: <Widget>[
+                      Text(productDetails[index].name),
+                      FlatButton(
+                        child: Text('Хочу'),
+                        color: Colors.red,
+                        onPressed: () {/** */},
+                      ),
+                    ],
+                  ),
+                  Image.network(productDetails[index].image),
+                ],
+              );
+            },
+          ),
+          bottomNavigationBar: NavigationWidget(),
         );
       },
     );

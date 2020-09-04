@@ -9,8 +9,7 @@ class Destination {
 }
 
 const List<Destination> allDestinations = <Destination>[
-  Destination('Меню', Icons.home, Colors.teal, '/category'),
-  Destination('Доставка', Icons.explore, Colors.cyan, '/delivery'),
+  Destination('Меню', Icons.home, Colors.teal, '/'),
   Destination('Корзина', Icons.shopping_basket, Colors.orange, '/basket'),
   Destination('Вход', Icons.account_circle, Colors.blue, '/login')
 ];
@@ -26,8 +25,7 @@ class NavigationWidget extends StatelessWidget {
         return BottomNavigationBarItem(
             icon: Icon(destination.icon),
             backgroundColor: destination.color,
-            title: Text(destination.title)
-        );
+            title: Text(destination.title));
       }).toList(),
       // selectedItemColor: Colors.amber[800],
     );
